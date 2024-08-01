@@ -33,6 +33,7 @@ const request = async (method, url, params = {}, headers = {}, token = '') => {
 const getDetail = async (params) => {
     const data = await request("GET", BASEURL + "/api/v4/auctionfq/detail", params, {}, accessToken);
     console.log('商品详情:', data);
+    return data;
 }
 
 // 报名
@@ -52,10 +53,9 @@ const getShop = async (params) => {
 const allFuc = async (id, token) => {
     accessToken = token;
     const detail = await getDetail({ id: id });
-    console.log(detail?.data?.auction?.act_id);
     await getQualification({ id: detail?.data?.auction?.act_id, paypwd: '122222' });
     await getShop({ id: detail?.data?.auction?.act_id, price_times: detail?.data?.auction?.end_price });
 }
 
 // 这里需要商品Id和token
-allFuc(28836, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJhdWQiOiJodHRwczpcL1wvd3d3LmRzY21hbGwuY24iLCJzdWIiOiJqcm9ja2V0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzI1MDA5Nzc0LCJ1c2VyX2lkIjo5Mjd9.71RszcsaI-jnZmRCVOoKd6eUG5W6Z_ys_sMvoylDxfo');
+allFuc(28863, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJhdWQiOiJodHRwczpcL1wvd3d3LmRzY21hbGwuY24iLCJzdWIiOiJqcm9ja2V0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzI1MDY4NzIzLCJ1c2VyX2lkIjo5Mjd9.1uoq8bqVs8nUfPqE2VQXLkIrLlay-2IxHtppgaY8KPA');
