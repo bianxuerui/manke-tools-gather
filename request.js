@@ -22,4 +22,4 @@ const request = async (method, url, data = {}, headers = {}, token = '') => {
   }
 };
 
-module.exports = request;
+export default request;
