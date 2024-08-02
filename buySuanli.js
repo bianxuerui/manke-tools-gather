@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from 'axios'
 
 let accessToken = '';
 let suanliDTO = 0;
@@ -36,7 +36,6 @@ const request = async (method, url, params = {}, headers = {}, token = '') => {
 // 获取token
 const getToken = async (params) => {
     const token = await request("POST", "https://maq.ddmaq.com/maq-user/login", params);
-    console.log(token);
     accessToken = token.data.accessToken;
     console.log('this is token:', token.data.accessToken);
 };
@@ -44,7 +43,6 @@ const getToken = async (params) => {
 // 获取权重列表
 const getMaxNum = async (params) => {
     const data = await request('GET', "https://maq.ddmaq.com/maq-power/hashratePackageOrder/getUserHashratePackageList", params, {}, accessToken)
-    console.log('sssssw', data);
     if (data?.data?.packageUserDTOS?.length) {
         suanliDTO = data?.data?.packageUserDTOS[0];
     }
@@ -52,7 +50,6 @@ const getMaxNum = async (params) => {
 
 // 购买权重包
 const buySuanli = async () => {
-    console.log(suanliDTO, 'ssssssssss');
     const result = await request('POST', "https://maq.ddmaq.com/maq-power/hashratePackageOrder/addHashratePackageOrder", {
         id: suanliDTO?.id,
         payType: 0,
