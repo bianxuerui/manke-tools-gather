@@ -44,6 +44,7 @@ const getToken = async (params) => {
 // 获取权重列表
 const getMaxNum = async (params) => {
     const data = await request('GET', "https://maq.ddmaq.com/maq-power/hashratePackageOrder/getUserHashratePackageList", params, {}, accessToken)
+    console.log('sssssw', data);
     if (data?.data?.packageUserDTOS?.length) {
         suanliDTO = data?.data?.packageUserDTOS[0];
     }
