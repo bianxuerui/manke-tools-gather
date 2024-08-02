@@ -9,8 +9,9 @@ const getMaq = async (params) => {
     const list = await maqList(accessToken.data.accessToken);
     // 获取广告token
     const adToken = await getAd(accessToken.data.accessToken);
+    console.log(adToken, 'this is tokenAd');
     // 收取
-    await get(list.data, adToken, accessToken);
+    await get(list.data, adToken, accessToken.data.accessToken);
 };
 
 
@@ -20,7 +21,8 @@ const maqList = async (accessToken) => {
 }
 
 const getAd = async (accessToken) => {
-    await request('POST', "https://maq.ddmaq.com/maq-ad/put/getAdvertising", { age: 18, sex: 1 }, {}, accessToken);
+    const data = await request('POST', "https://maq.ddmaq.com/maq-ad/put/getAdvertising", { age: 18, sex: 1 }, {}, accessToken);
+    return data?.data?.adToken;
 }
 
 const get = (list, token, accessToken) => {
@@ -33,6 +35,7 @@ const get = (list, token, accessToken) => {
 
     request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/成功收租`);
 }
+
 
 getMaq({
     username: "15665834992",
