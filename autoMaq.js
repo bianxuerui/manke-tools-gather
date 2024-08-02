@@ -1,4 +1,4 @@
-import request from "./request";
+import request from "./request.js";
 
 // 收取token
 const getMaq = async (params) => {
