@@ -1,55 +1,48 @@
-const request = require("./src/untils/request");
+const request = require("./request");
 
-let accessToken = '';
-let listData = [];
-let adToken = '';
-let maxNum = 0;
-
-// 获取token
-const getToken = async () => {
-    const token = await request("POST", "https://maq.ddmaq.com/maq-user/login", {
-        username: "15665834992",
-        password: "987654321",
-    });
-
-    accessToken = token.data.accessToken;
+// 收取token
+const getMaq = async (params) => {
+    console.log(params);
+    // 获取token
+    const accessToken = await request("POST", "https://maq.ddmaq.com/maq-user/login", params);
+    // 获取列表
+    const list = await maqList(accessToken.data.accessToken);
+    // 获取广告token
+    const adToken = await getAd(accessToken.data.accessToken);
+    // 收取
+    await get(list.data, adToken, accessToken);
 };
 
 
-const maqList = async () => {
+const maqList = async (accessToken) => {
     const list = await request('GET', "https://maq.ddmaq.com/maq-coins/manke/rentList", {}, {}, accessToken);
-    listData = list.data;
+    return list;
 }
 
-const getAd = async () => {
-    await request('POST', "https://maq.ddmaq.com/maq-ad/put/getAdvertising", { age: 18, sex: 1 }, {}, accessToken).then(res => {
-        console.log('this is ad:', res);
-        adToken = res.data.adToken;
-    });
+const getAd = async (accessToken) => {
+    await request('POST', "https://maq.ddmaq.com/maq-ad/put/getAdvertising", { age: 18, sex: 1 }, {}, accessToken);
 }
 
-const get = () => {
-    listData.map(async item => {
+const get = (list, token, accessToken) => {
+    list.map(async item => {
         await request('POST', "https://maq.ddmaq.com/maq-coins/manke/rent", {
             id: item.id,
-            adToken: adToken,
-        }, {}, accessToken).then(res => {
-        })
+            adToken: token,
+        }, {}, accessToken)
     })
 }
 
-const getHasList = async () => {
-    await request('GET', "https://maq.ddmaq.com/maq-power/income/getList", { page: 1, pageSize: 10, status: 0, begin: '2023-01-01 00:00', end: '2023-01-05 00:00' }, {}, accessToken).then(res => {
-        console.log('this is hasList:', res);
-    });
-}
+getMaq({
+    username: "15665834992",
+    password: "987654321",
+})
 
-const getMaq = async () => {
-    await getToken();
-    await maqList();
-    await getAd();
-    await get();
-    await getHasList();
-}
+getMaq({
+    username: "15264086788",
+    password: "12345678",
+})
 
-module.exports = { getMaq };
+getMaq({
+    username: "13583025988",
+    password: "qwertyuiop",
+})
