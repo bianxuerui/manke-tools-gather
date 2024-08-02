@@ -30,6 +30,8 @@ const get = (list, token, accessToken) => {
             adToken: token,
         }, {}, accessToken)
     })
+
+    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/成功收租`);
 }
 
 getMaq({
