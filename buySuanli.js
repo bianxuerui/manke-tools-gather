@@ -46,6 +46,7 @@ const getMaxNum = async (params) => {
     if (data?.data?.packageUserDTOS?.length) {
         suanliDTO = data?.data?.packageUserDTOS[0];
     }
+    console.log(suanliDTO);
 }
 
 // 购买权重包
@@ -59,7 +60,7 @@ const buySuanli = async () => {
         password: 122222,
     }, {}, accessToken)
 
-    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/${result?.message}`);
+    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/使用${suanliDTO?.purchaseTimeDaily}漫克，兑换${suanliDTO?.hashrate * suanliDTO?.purchaseTimeDaily}算力`);
     console.log('购买结果：', result);
 }
 
