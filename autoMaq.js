@@ -9,7 +9,6 @@ const getMaq = async (params) => {
     const list = await maqList(accessToken.data.accessToken);
     // 获取广告token
     const adToken = await getAd(accessToken.data.accessToken);
-    console.log(adToken, 'this is tokenAd');
     // 收取
     await get(list.data, adToken, accessToken.data.accessToken);
 };
@@ -35,7 +34,6 @@ const get = (list, token, accessToken) => {
 
     request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/成功收租`);
 }
-
 
 getMaq({
     username: "15665834992",
