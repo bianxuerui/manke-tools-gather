@@ -60,13 +60,12 @@ const buySuanli = async () => {
         password: 122222,
     }, {}, accessToken)
 
-    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/使用${suanliDTO?.purchaseTimeDaily}漫克，兑换${suanliDTO?.hashrate * suanliDTO?.purchaseTimeDaily}算力`);
     console.log('购买结果：', result);
 }
 
 const running = async () => {
     await getToken({
-        username: "15665834992",
+        username: "19157838761",
         password: "987654321",
     });
     await getMaxNum({ type: 0 });

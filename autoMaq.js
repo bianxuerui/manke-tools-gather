@@ -31,21 +31,9 @@ const get = (list, token, accessToken) => {
             adToken: token,
         }, {}, accessToken)
     })
-
-    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/成功收租`);
 }
 
 getMaq({
-    username: "15665834992",
+    username: "19157838761",
     password: "987654321",
-})
-
-getMaq({
-    username: "15264086788",
-    password: "12345678",
-})
-
-getMaq({
-    username: "13583025988",
-    password: "qwertyuiop",
 })

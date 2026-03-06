@@ -46,7 +46,6 @@ const getQualification = async (params) => {
 const getShop = async (params) => {
     const data = await request("GET", BASEURL + "/api/v4/auctionfq/bid", params, {}, accessToken);
     console.log('出价:', data);
-    request('GET', `https://bark.6yi.plus/gxPCWmEsJJTJFKSmeW5GUN/${data?.data?.msg || '购买成功'}`);
 }
 
 

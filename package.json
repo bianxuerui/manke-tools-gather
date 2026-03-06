@@ -5,6 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node scheduler.js",
+    "auto:maq": "node autoMaq.js",
+    "buy:suanli": "node buySuanli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
